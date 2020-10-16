@@ -314,16 +314,24 @@ public class Productos extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
+        Boolean estado = this.btnActivo.isSelected();
+        String valer;
+        if (estado == true) {
+           valer = ("Activo");
+       } else{
+          valer = ("Inactivo");
+       }
                 
-        String[]datos=new String[6];
+        String[]datos = new String[7];
         datos[0]= txtId.getText();
         datos[1]= txtNombre.getText();
-        datos [2] = txtCodigo.getText();
-        datos [3] = txtVencimiento.getText();
-        datos [4] = txtCategoria.getText();
-        datos [5] = txtDesc.getText();
+        datos[2] = txtCodigo.getText();
+        datos[3] = txtVencimiento.getText();
+        datos[4] = txtCategoria.getText();
+        datos[5] = valer;
+        datos[6] = txtDesc.getText();
       
-                for (int i =  0; i <TablaDetalle.getColumnCount();i++){
+                for (int i =  0; i <= TablaDetalle.getColumnCount();i++){
               modelo.setValueAt(datos[i], filas, i);
            }
         
@@ -354,7 +362,7 @@ public class Productos extends javax.swing.JInternalFrame {
     ArrayList list = new ArrayList();
     list.add(item);
     list.add(nomp);
-     list.add(codigop);
+    list.add(codigop);
     list.add(vencp);
     list.add(categp);
        if (estadop == true) {
@@ -398,13 +406,15 @@ public class Productos extends javax.swing.JInternalFrame {
 
     private void TablaDetalleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaDetalleMouseClicked
  
-        int      fila_seleccionada=TablaDetalle.getSelectedRow   ();
-        txtId.setText(TablaDetalle.getValueAt(fila_seleccionada,1).toString());
-        txtCodigo.setText(TablaDetalle.getValueAt(fila_seleccionada,3).toString());
-        txtNombre.setText(TablaDetalle.getValueAt(fila_seleccionada,2).toString());
-        txtVencimiento.setText(TablaDetalle.getValueAt(fila_seleccionada,4).toString());
-          txtDesc.setText(TablaDetalle.getValueAt(fila_seleccionada,5).toString());
-          txtCategoria.setText(TablaDetalle.getValueAt(fila_seleccionada,6).toString());
+        Boolean estado = this.btnActivo.isSelected();
+
+        int fila_seleccionada=TablaDetalle.getSelectedRow();
+        txtId.setText(TablaDetalle.getValueAt(fila_seleccionada,0).toString());
+        txtCodigo.setText(TablaDetalle.getValueAt(fila_seleccionada,2).toString());
+        txtNombre.setText(TablaDetalle.getValueAt(fila_seleccionada,1).toString());
+        txtVencimiento.setText(TablaDetalle.getValueAt(fila_seleccionada,3).toString());
+        txtDesc.setText(TablaDetalle.getValueAt(fila_seleccionada,6).toString());
+        txtCategoria.setText(TablaDetalle.getValueAt(fila_seleccionada,4).toString());
           
           filas=fila_seleccionada;
           
