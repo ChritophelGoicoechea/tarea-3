@@ -461,23 +461,37 @@ public class Lista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbxCategoriaActionPerformed
 
     private void Editar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Editar2ActionPerformed
-     
+        Boolean existencia = this.btnExistente.isSelected();
+        String existir;
+        if (existencia == true) {
+           existir = ("Existente");
+       } else{
+          existir = ("No existente");
+       }
         
+        Boolean estado = this.btnActivo.isSelected();
+        String valer;
+        if (estado == true) {
+           valer = ("Activo");
+       } else{
+          valer = ("Inactivo");
+       }
         cbxCategoria.setEditable(true);
                 
         String[]datos=new String[10];
-        datos[0]= txtId.getText();
-        datos[1]= txtNombre.getText();
-        datos [2] = txtCodigo.getText();
-  
-        datos [4] = txtVencimiento.getText();
-        datos [5] = txtDesc.getText();
-        datos [6] = cbxCategoria.getSelectedItem().toString();
+        datos[0] = txtId.getText();
+        datos[1] = txtNombre.getText();
+        datos[2] = txtCodigo.getText();
+        datos[3] = existir;
+        datos[4] = txtVencimiento.getText();
+        datos[5] = txtDesc.getText();
+        datos[6] = cbxCategoria.getSelectedItem().toString();
+        datos[7]= valer;
       
         
    
         
-        for (int i =  0; i <TablaDetalle.getColumnCount();i++){
+        for (int i =  0; i <= TablaDetalle.getColumnCount();i++){
         modelo.setValueAt(datos[i], filas, i);
         }
 
@@ -487,13 +501,13 @@ public class Lista extends javax.swing.JInternalFrame {
     private void TablaDetalleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaDetalleMouseClicked
         // TODO add your handling code here:
         
-        int      fila_seleccionada=TablaDetalle.getSelectedRow   ();
+        int fila_seleccionada=TablaDetalle.getSelectedRow();
         txtId.setText(TablaDetalle.getValueAt(fila_seleccionada,0).toString());
-        txtCodigo.setText(TablaDetalle.getValueAt(fila_seleccionada,1).toString());
-        txtNombre.setText(TablaDetalle.getValueAt(fila_seleccionada,2).toString());
+        txtCodigo.setText(TablaDetalle.getValueAt(fila_seleccionada,2).toString());
+        txtNombre.setText(TablaDetalle.getValueAt(fila_seleccionada,1).toString());
         txtVencimiento.setText(TablaDetalle.getValueAt(fila_seleccionada,3).toString());
-          txtDesc.setText(TablaDetalle.getValueAt(fila_seleccionada,5).toString());
-          cbxCategoria.toString();
+        txtDesc.setText(TablaDetalle.getValueAt(fila_seleccionada,5).toString());
+        cbxCategoria.toString();
           
           filas=fila_seleccionada;
           
