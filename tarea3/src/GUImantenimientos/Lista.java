@@ -31,7 +31,7 @@ public class Lista extends javax.swing.JInternalFrame {
                                          //Hay que sustituir los valores indicados en la ClsProducto. Y así para todos los demás.
     String codigop = this.txtCodigo.getText();
     String descp = this.txtDesc.getText();
-    String vencp = this.txtVencimiento.getDateFormatString();
+    String vencp = this.txtVencimiento.getText();
     String categp = this.cbxCategoria.getSelectedItem().toString();
     Boolean estadop = this.btnActivo.isSelected();
     Boolean existep = this.btnExistente.isSelected();
@@ -101,8 +101,8 @@ public class Lista extends javax.swing.JInternalFrame {
         jDescr = new javax.swing.JLabel();
         jCategoria = new javax.swing.JLabel();
         cbxCategoria = new javax.swing.JComboBox<>();
-        txtVencimiento = new com.toedter.calendar.JDateChooser();
         Eliminar3 = new javax.swing.JButton();
+        txtVencimiento = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -224,15 +224,19 @@ public class Lista extends javax.swing.JInternalFrame {
             }
         });
 
-        txtVencimiento.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        txtVencimiento.setPreferredSize(new java.awt.Dimension(36, 20));
-
         Eliminar3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Eliminar3.setText("Eliminar");
         Eliminar3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         Eliminar3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Eliminar3ActionPerformed(evt);
+            }
+        });
+
+        txtVencimiento.setName("txtVencimiento"); // NOI18N
+        txtVencimiento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtVencimientoActionPerformed(evt);
             }
         });
 
@@ -268,10 +272,13 @@ public class Lista extends javax.swing.JInternalFrame {
                                     .addComponent(btnInactivo, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(ListaProductosLayout.createSequentialGroup()
                                 .addComponent(jFecha)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(ListaProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cbxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(ListaProductosLayout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(cbxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(ListaProductosLayout.createSequentialGroup()
+                                        .addGap(20, 20, 20)
+                                        .addComponent(txtVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 242, Short.MAX_VALUE)
                         .addGroup(ListaProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -329,19 +336,15 @@ public class Lista extends javax.swing.JInternalFrame {
                                     .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(Editar2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(7, 7, 7)))
+                        .addGap(31, 31, 31)
                         .addGroup(ListaProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(ListaProductosLayout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addGroup(ListaProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(ListaProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(EliminarTodo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(Eliminar3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jFecha))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(ListaProductosLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(txtVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                            .addGroup(ListaProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(EliminarTodo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Eliminar3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(ListaProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jFecha)
+                                .addComponent(txtVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGroup(ListaProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ListaProductosLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
@@ -355,11 +358,10 @@ public class Lista extends javax.swing.JInternalFrame {
                             .addComponent(btnNoExistente))
                         .addGap(56, 56, 56))
                     .addGroup(ListaProductosLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jDescr)
                         .addGap(3, 3, 3)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)))
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -479,7 +481,7 @@ public class Lista extends javax.swing.JInternalFrame {
         datos[1]= txtNombre.getText();
         datos [2] = txtCodigo.getText();
   
-        datos [4] = txtVencimiento.getDateFormatString();
+        datos [4] = txtVencimiento.getText();
         datos [5] = txtDesc.getText();
         datos [6] = cbxCategoria.getSelectedItem().toString();
       
@@ -500,7 +502,7 @@ public class Lista extends javax.swing.JInternalFrame {
         txtId.setText(TablaDetalle.getValueAt(fila_seleccionada,0).toString());
         txtCodigo.setText(TablaDetalle.getValueAt(fila_seleccionada,1).toString());
         txtNombre.setText(TablaDetalle.getValueAt(fila_seleccionada,2).toString());
-        txtVencimiento.getDateFormatString();
+        txtVencimiento.setText(TablaDetalle.getValueAt(fila_seleccionada,3).toString());
           txtDesc.setText(TablaDetalle.getValueAt(fila_seleccionada,5).toString());
           cbxCategoria.toString();
           
@@ -540,6 +542,10 @@ public class Lista extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIdActionPerformed
 
+    private void txtVencimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVencimientoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtVencimientoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buscar2;
@@ -569,6 +575,6 @@ public class Lista extends javax.swing.JInternalFrame {
     private javax.swing.JTextArea txtDesc;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
-    private com.toedter.calendar.JDateChooser txtVencimiento;
+    private javax.swing.JTextField txtVencimiento;
     // End of variables declaration//GEN-END:variables
 }

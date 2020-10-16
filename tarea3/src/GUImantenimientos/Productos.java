@@ -131,6 +131,7 @@ public class Productos extends javax.swing.JInternalFrame {
                 "ID", "Nombre", "Codigo", "Fecha de vencimiento", "Categoria", "Estado", "Descripcion"
             }
         ));
+        TablaDetalle.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         TablaDetalle.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TablaDetalleMouseClicked(evt);
@@ -313,11 +314,12 @@ public class Productos extends javax.swing.JInternalFrame {
         
                 
         String[]datos=new String[6];
+        datos[0]= txtId.getText();
         datos[1]= txtNombre.getText();
         datos [2] = txtCodigo.getText();
         datos [3] = txtVencimiento.getText();
-        datos [4] = txtDesc.getText();
-        datos [5] = txtCategoria.getText();
+        datos [4] = txtCategoria.getText();
+        datos [5] = txtDesc.getText();
       
                 for (int i =  0; i <TablaDetalle.getColumnCount();i++){
               modelo.setValueAt(datos[i], filas, i);
@@ -395,12 +397,12 @@ public class Productos extends javax.swing.JInternalFrame {
     private void TablaDetalleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaDetalleMouseClicked
  
         int      fila_seleccionada=TablaDetalle.getSelectedRow   ();
-        
-        txtCodigo.setText(TablaDetalle.getValueAt(fila_seleccionada,2).toString());
-        txtNombre.setText(TablaDetalle.getValueAt(fila_seleccionada,1).toString());
-        txtVencimiento.setText(TablaDetalle.getValueAt(fila_seleccionada,3).toString());
-          txtDesc.setText(TablaDetalle.getValueAt(fila_seleccionada,4).toString());
-          txtCategoria.setText(TablaDetalle.getValueAt(fila_seleccionada,5).toString());
+        txtId.setText(TablaDetalle.getValueAt(fila_seleccionada,1).toString());
+        txtCodigo.setText(TablaDetalle.getValueAt(fila_seleccionada,3).toString());
+        txtNombre.setText(TablaDetalle.getValueAt(fila_seleccionada,2).toString());
+        txtVencimiento.setText(TablaDetalle.getValueAt(fila_seleccionada,4).toString());
+          txtDesc.setText(TablaDetalle.getValueAt(fila_seleccionada,5).toString());
+          txtCategoria.setText(TablaDetalle.getValueAt(fila_seleccionada,6).toString());
           
           filas=fila_seleccionada;
           
